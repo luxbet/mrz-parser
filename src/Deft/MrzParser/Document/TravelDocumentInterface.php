@@ -70,7 +70,7 @@ interface TravelDocumentInterface
     /**
      * The personal number that identifies the document holder in its state.
      *
-     * @return strinmg
+     * @return string
      */
     public function getPersonalNumber();
 }

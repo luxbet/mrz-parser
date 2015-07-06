@@ -36,14 +36,11 @@ abstract class AbstractParser implements ParserInterface
         $nameParts = explode('<<', $token);
         if (count($nameParts) < 2) throw new ParseException("Names could not be parsed.");
         return array_slice(
-            array_map(function ($str) { return $this->clean($str); }, $nameParts),
+            array_map(function ($str) {
+				return trim(str_replace('<', ' ', $str));
+			}, $nameParts),
             0,
             2
         );
-    }
-
-    protected function clean($string)
-    {
-        return trim(str_replace('<', ' ', $string));
     }
 }

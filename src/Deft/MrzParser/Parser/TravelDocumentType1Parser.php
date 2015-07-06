@@ -39,11 +39,11 @@ class TravelDocumentType1Parser extends AbstractParser
      */
     public function parse($string)
     {
-        if (!in_array($this->getToken($string, 1), ['I', 'A', 'C'])) {
+        if (!in_array($this->getToken($string, 1), array('I', 'A', 'C'))) {
             throw new ParseException("First character is not 'I', 'A', or 'C'");
         }
 
-        $fields = [
+        $fields = array(
             'type' => TravelDocumentType::ID_CARD,
             'issuingCountry' => $this->getToken($string, 3, 5),
             'documentNumber' => $this->getToken($string, 6, 14),
@@ -52,7 +52,7 @@ class TravelDocumentType1Parser extends AbstractParser
             'sex' => $this->getToken($string, 38),
             'dateOfExpiry' => $this->getDateToken($string, 39),
             'nationality' => $this->getToken($string, 46, 48)
-        ];
+		);
 
         $names = $this->getNames($string, 61, 90);
         $fields['primaryIdentifier'] = $names[0];
