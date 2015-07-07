@@ -24,7 +24,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $mrzString = "P<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<L898902C<3UTO6908061F9406236ZE184226B<<<<<14";
 
         $document = $this->parser->parseString($mrzString);
-        $fields = [
+        $fields = array(
             'type' => TravelDocumentType::PASSPORT,
             'number' => 'L898902C',
             'issuingCountry' => 'UTO',
@@ -35,20 +35,20 @@ class ParserTest extends \PHPUnit_Framework_TestCase
             'dateOfBirth' => '06-08-1969',
             'nationality' => 'UTO',
             'personalNumber' => 'ZE184226B'
-        ];
+        );
         $this->assertValidDocument($document, $fields);
     }
 
     public function testParse_idcardArray()
     {
-        $mrzString = [
+        $mrzString = array(
             "I<UTOIU4FC08Q12219340341<<<<<6",
             "9306037M1603165UTO<<<<<<<<<<<3",
             "DOE<<JOHN<<<<<<<<<<<<<<<<<<<<<"
-        ];
+        );
 
         $document = $this->parser->parseLines($mrzString);
-        $fields = [
+        $fields = array(
             'type' => TravelDocumentType::ID_CARD,
             'number' => 'IU4FC08Q1',
             'issuingCountry' => 'UTO',
@@ -59,7 +59,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
             'dateOfBirth' => '03-06-1993',
             'nationality' => 'UTO',
             'personalNumber' => '219340341'
-        ];
+        );
         $this->assertValidDocument($document, $fields);
     }
 
